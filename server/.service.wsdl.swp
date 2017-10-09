@@ -1,0 +1,167 @@
+<?xml version ='1.0' encoding ='UTF-8'?>
+<definitions name='Car'
+             targetNamespace='http://example.org/Car'
+             xmlns:tns=' http://example.org/Car '
+             xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/'
+             xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+             xmlns:soapenc='http://schemas.xmlsoap.org/soap/encoding/'
+             xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/'
+             xmlns='http://schemas.xmlsoap.org/wsdl/'>
+    <types>
+        <schema xmlns="http://www.w3.org/2000/10/XMLSchema" targetNamespace="http://192.168.0.15/~user1/SOAP/task2/server/.xsd">
+            <xsd:complexType name="ParamAuto">
+                <xsd:sequence>
+                    <element name="id">
+                        <complexType>
+                            <all>
+                                <element name="value" type="int"/>
+                            </all>
+                        </complexType>
+                    </element>
+                    <element name="brand">
+                        <complexType>
+                            <all>
+                                <element name="value" type="string"/>
+                            </all>
+                        </complexType>
+                    </element>
+                    <element name="model">
+                        <complexType>
+                            <all>
+                                <element name="value" type="string"/>
+                            </all>
+                        </complexType>
+                    </element>
+                    <element name="year">
+                        <complexType>
+                            <all>
+                                <element name="value" type="int"/>
+                            </all>
+                        </complexType>
+                    </element>
+                    <element name="color">
+                        <complexType>
+                            <all>
+                                <element name="value" type="string"/>
+                            </all>
+                        </complexType>
+                    </element>
+                    <element name="price">
+                        <complexType>
+                            <all>
+                                <element name="value" type="int"/>
+                            </all>
+                        </complexType>
+                    </element>
+                   <element name="max_speed">
+                        <complexType>
+                            <all>
+                                <element name="value" type="int"/>
+                            </all>
+                        </complexType>
+                    </element>
+                </xsd:sequence>
+            </xsd:complexType>
+        </schema>
+    </types>
+    <message name='getAllCarsRequest'>
+    </message>
+    <message name='getAllCarsResponse'>
+        <part name='Result' type='xsd:string'/>
+    </message>
+
+    <message name='getCarByIdRequest'>
+        <part name='paramsArr' type='xsd:string'/>
+    </message>
+    <message name='getCarByIdResponse'>
+        <part name='Result' type='xsd:string'/>
+    </message>
+
+    <message name='getCarsByParamsRequest'>
+        <part name='paramsArr' type='xsd:string'/>
+    </message>
+    <message name='getCarsByParamsResponse'>
+        <part name='Result' type='xsd:string'/>
+    </message>
+    <message name='getOrderCarRequest'>
+        <part name='arrParams' type='xsd:string'/>
+    </message>
+    <message name='getOrderCarResponse'>
+        <part name='Result' type='xsd:string'/>
+    </message>
+    <portType name='CarPortType'>
+        <operation name='getAllCars'>
+            <input message='tns:getAllCarsRequest'/>
+            <output message='tns:getAllCarsResponse'/>
+        </operation>
+        <operation name='getCarById'>
+            <input message='tns:getCarByIdRequest'/>
+            <output message='tns:getCarByIdResponse'/>
+        </operation>
+        <operation name='getCarsByParams'>
+            <input message='tns:getCarsByParamsRequest'/>
+            <output message='tns:getCarsByParamsResponse'/>
+        </operation>
+        <operation name='getOrderCar'>
+            <input message='tns:getOrderCarRequest'/>
+            <output message='tns:getOrderCarResponse'/>
+        </operation>
+    </portType>
+    <binding name='CarBinding' type='tns:CarPortType'>
+        <soap:binding style='rpc'
+                      transport='http://schemas.xmlsoap.org/soap/http'/>
+        <operation name='getAllCars'>
+            <soap:operation soapAction='urn:xmethods-delayed-quotes#getAllCars'/>
+            <input>
+                <soap:body use='encoded' namespace='urn:xmethods-delayed-quotes'
+                           encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+            </input>
+            <output>
+                <soap:body use='encoded' namespace='urn:xmethods-delayed-quotes'
+                           encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+            </output>
+        </operation>
+
+        <operation name='getCarById'>
+            <soap:operation soapAction='urn:xmethods-delayed-quotes#getCarById'/>
+            <input>
+                <soap:body use='encoded' namespace='urn:xmethods-delayed-quotes'
+                           encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+            </input>
+            <output>
+                <soap:body use='encoded' namespace='urn:xmethods-delayed-quotes'
+                           encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+            </output>
+        </operation>
+
+        <operation name='getCarsByParams'>
+            <soap:operation soapAction='urn:xmethods-delayed-quotes#getCarsByParams'/>
+            <input>
+                <soap:body use='encoded' namespace='urn:xmethods-delayed-quotes'
+                           encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+            </input>
+            <output>
+                <soap:body use='encoded' namespace='urn:xmethods-delayed-quotes'
+                           encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+            </output>
+        </operation>
+
+        <operation name='getOrderCar'>
+            <soap:operation soapAction='urn:xmethods-delayed-quotes#getOrderCar'/>
+            <input>
+                <soap:body use='encoded' namespace='urn:xmethods-delayed-quotes'
+                           encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+            </input>
+            <output>
+                <soap:body use='encoded' namespace='urn:xmethods-delayed-quotes'
+                           encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+            </output>
+        </operation>
+    </binding>
+    <service name='CarService'>
+        <port name='CarPort' binding='CarBinding'>
+            <soap:address location='http://192.168.0.15/~user1/SOAP/task2/server/index.php'/>
+        </port>
+    </service>
+
+</definitions>
