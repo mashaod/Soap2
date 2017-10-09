@@ -4,7 +4,6 @@ new Vue({
         carSelected: false,
         isActive: true,
         hasError: false,
-        cars: {},
         id_car: '',
         brand: '',
         year: '',
